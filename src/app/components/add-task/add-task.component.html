@@ -8,6 +8,7 @@
       id="text"
       placeholder="Add Task"
     />
+    <h5 *ngIf="errorText">This field is required</h5>
   </div>
   <div class="form-control">
     <label for="day">Day & Time</label>
@@ -18,6 +19,7 @@
       id="day"
       placeholder="Add Day & Time"
     />
+    <h5 *ngIf="errorDate">This field is required</h5>
   </div>
   <div class="form-control form-control-check">
     <label for="reminder">Set Reminder</label>

@@ -46,6 +46,7 @@ body {
 
 .form-control {
   margin: 20px 0;
+  width: 100%;
 }
 
 .form-control label {

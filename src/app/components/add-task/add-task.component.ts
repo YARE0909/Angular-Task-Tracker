@@ -16,6 +16,8 @@ export class AddTaskComponent {
   reminder: boolean = false;
   showAddTask: boolean = false;
   subscription!: Subscription;
+  errorText: boolean = false;
+  errorDate: boolean = false;
 
   constructor(private uiService: UiService) {
     this.subscription = this.uiService
@@ -24,16 +26,33 @@ export class AddTaskComponent {
   }
 
   onSubmit() {
-    const newTask = {
-      text: this.text,
-      day: this.day,
-      reminder: this.reminder,
-    };
+    console.log(this.text);
+    if(!this.text || this.text === ""){
+      if(this.day){
+        this.errorDate = false;
+      }
+      this.errorText = true;
+    }else {
+      if(!this.day || this.day === ""){
+        if(this.text){
+        this.errorText = false;
+      }
+        this.errorDate = true;
+      } else {
+        this.errorDate = false;
+        this.errorText = false;
+        const newTask = {
+          text: this.text,
+          day: this.day,
+          reminder: this.reminder,
+        };
 
-    this.onAddTask.emit(newTask);
+        this.onAddTask.emit(newTask);
 
-    this.text = '';
-    this.day = '';
-    this.reminder = false;
+        this.text = '';
+        this.day = '';
+        this.reminder = false;
+      }
+    }
   }
 }
